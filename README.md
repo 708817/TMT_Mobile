@@ -27,7 +27,7 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 - [ ] AddStudent UI
 - [ ] AddStudent Functionality
 ## Versioning
-1. Added codes/variables inside an existing method, (v0.1 -> v0.1a -> v0.1b ...)
+1. Added and Changed codes/variables inside an existing method, (v0.1 -> v0.1a -> v0.1b ...)
 2. Added new method, (v0.1 -> v0.11 -> v0.12 ...)
 3. Added new class, (v0.1 -> v0.2 -> v0.3 ...)
 4. Final Release, (v1.0!!!!!)
