@@ -8,7 +8,6 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 ###### v0.1
 - Initial MainActivity UI Release
 ## Checklist
-###### Professor Mobile 
 - [ ] MainActivity UI
 - [ ] MainActivity Functionality
 - [ ] LoginActivity UI
@@ -19,13 +18,6 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 - [ ] SectionsActivity Functionality
 - [ ] ClassRecordActivity UI
 - [ ] ClassRecordActivity Functionality
-###### Admin Desktop
-- [ ] Connection UI
-- [ ] Connection Functionality
-- [ ] Login UI
-- [ ] Login Functionality
-- [ ] AddStudent UI
-- [ ] AddStudent Functionality
 ## Versioning
 1. Added and Changed codes/variables inside an existing method, (v0.1 -> v0.1a -> v0.1b ...)
 2. Added new method, (v0.1 -> v0.11 -> v0.12 ...)
