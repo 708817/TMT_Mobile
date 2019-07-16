@@ -8,7 +8,7 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 ###### v0.1
 - Initial MainActivity UI Release
 ## Checklist
-Professor Mobile 
+###### Professor Mobile 
 - [ ] MainActivity UI
 - [ ] MainActivity Functionality
 - [ ] LoginActivity UI
@@ -19,8 +19,7 @@ Professor Mobile
 - [ ] SectionsActivity Functionality
 - [ ] ClassRecordActivity UI
 - [ ] ClassRecordActivity Functionality
-
-Admin Desktop
+###### Admin Desktop
 - [ ] Connection UI
 - [ ] Connection Functionality
 - [ ] Login UI
