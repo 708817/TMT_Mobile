@@ -5,7 +5,7 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 - Checklist
 - Versioning
 ## Changelogs
-###### v0.11
+###### v0.2
 - Initial LoginActivity UI Release
 - Initial MDActivity UI Release
 - Added WSLogin.java and WSRetrieveInfo.java 
