@@ -1,5 +1,5 @@
 /*
-PURPOSE OF MainActivity.java
+DESCRIPTION OF MainActivity.java
         Eto yung magiging Loading Screen ng mobile application. It will check if the connections to
         the web service and database are working. It will not proceed to the login activity
         (LoginActivity.java) as long as the connections keep failing.
@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity {
         trial2 = 0;
         // Initial Values Declaration END
 
-        run();
+        init();
     }
 
-    private void run() {
+    private void init() {
         do {
             trial1++;
             testOutput = testWebService();
