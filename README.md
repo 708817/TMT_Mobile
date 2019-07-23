@@ -4,7 +4,7 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 - Update Log
 - Checklist
 - Versioning
-## Update Log
+## Changelogs
 ###### v0.1
 - Initial MainActivity UI Release
 ## Checklist
