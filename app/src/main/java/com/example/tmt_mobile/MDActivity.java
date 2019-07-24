@@ -1,3 +1,9 @@
+/*
+DESCRIPTION OF MDActivity.java
+        After ng LoginActivity, mapupunta sa Main Dashboard activity yung app. Dito magseselect ng
+        course yung user.
+*/
+
 package com.example.tmt_mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,27 +53,31 @@ public class MDActivity extends AppCompatActivity {
         wsRetrieveInfo.execute(email);
         sCourses = wsRetrieveInfo.retrieveResult;
 
-        saCourses = sCourses.split(",");
+        if (sCourses.isEmpty()) {
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        } else {
+            saCourses = sCourses.split(",");
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,
                 saCourses);
-        lvCourses.setAdapter(adapter);
-        lvCourses.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                course = saCourses[i];
+            lvCourses.setAdapter(adapter);
+            lvCourses.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    course = saCourses[i];
 
-                // SectionsActivity to be added (as of v0.11)
-                /*intent = new Intent(MDActivity.this, SectionsActivity.java);
-                bundle = new Bundle();
+                    intent = new Intent(MDActivity.this, SectionsActivity.class);
+                    bundle = new Bundle();
 
-                bundle.putString("course", course);
-                intent.putExtras(bundle);
+                    bundle.putString("course", course);
+                    bundle.putString("email", email);
+                    intent.putExtras(bundle);
 
-                startActivity(intent);*/
+                    startActivity(intent);
 
-            }
-        });
+                }
+            });
+        }
+
     }
 }
