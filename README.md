@@ -5,12 +5,18 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 - Checklist
 - Versioning
 ## Changelogs
+###### v0.3
+- Initial SectionsActivity UI prototype released
+- Initial ClassActivity UI prototype released
+- Initial AttendancMode UI prototype released (Note: Class name will be refactored on next patch)
+- Added WSRetrieveSection.java and WSSetAttendance.java
+- Modified MDActivity to co-function with added activities (MDActivity.java, lines 69-76)
 ###### v0.2
-- Initial LoginActivity UI Release
-- Initial MDActivity UI Release
+- Initial LoginActivity UI prototype released
+- Initial MDActivity UI prototype released
 - Added WSLogin.java and WSRetrieveInfo.java 
 ###### v0.1
-- Initial MainActivity UI Release
+- Initial MainActivity UI prototype released
 ## Checklist
 - [ ] MainActivity UI
 - [ ] MainActivity Functionality
