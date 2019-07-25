@@ -1,14 +1,14 @@
 # TMT_Mobile
 A Mobile Application for Attendance recording using Web Server, Database, and NFS sensor.
 ## Contents
-- Update Log
-- Checklist
-- Versioning
+- [Changelogs](https://github.com/708817/TMT_Mobile#changelogs)
+- [Checklist](https://github.com/708817/TMT_Mobile#checklist)
+- [Versioning](https://github.com/708817/TMT_Mobile#versioning)
 ## Changelogs
 ###### v0.3
 - Initial SectionsActivity UI prototype released
 - Initial ClassActivity UI prototype released
-- Initial AttendancMode UI prototype released (Note: Class name will be refactored on next patch)
+- Initial AttendanceMode UI prototype released (Note: Class name will be refactored on next patch)
 - Added WSRetrieveSection.java and WSSetAttendance.java
 - Modified MDActivity to co-function with added activities (MDActivity.java, lines 69-76)
 ###### v0.2
