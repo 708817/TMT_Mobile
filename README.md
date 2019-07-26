@@ -1,10 +1,16 @@
 # TMT_Mobile
-A Mobile Application for Attendance recording using Web Server, Database, and NFS sensor.
+A Mobile Application for Attendance recording using Web Server, Database, and NFC sensor.
 ## Contents
 - [Changelogs](https://github.com/708817/TMT_Mobile#changelogs)
 - [Checklist](https://github.com/708817/TMT_Mobile#checklist)
 - [Versioning](https://github.com/708817/TMT_Mobile#versioning)
 ## Changelogs
+###### v0.4
+- Added WSTestDatabase.java and WSTestWebService.java
+- Renamed AttendanceMode.java to AttendanceActivity.java
+- Modified AttendanceActivity.java (lines 53-66)
+- Modified MainActivity.java to co-function with other classes (lines 19-20, 85-94, and 98-107)
+- Added comments on WS activities
 ###### v0.3
 - Initial SectionsActivity UI prototype released
 - Initial ClassActivity UI prototype released

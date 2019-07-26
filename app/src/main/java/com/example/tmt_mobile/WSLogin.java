@@ -1,3 +1,4 @@
+// NOTE: See bottom comment to see ideal Web Service method parameters
 package com.example.tmt_mobile;
 
 import android.content.Context;
@@ -81,3 +82,16 @@ public class WSLogin extends AsyncTask<String, Void, Boolean> {
     }
 
 }
+
+/*
+ * NOTE: Hold Middle-Click (Mouse3) to highlight the code without including the asterisks
+ *
+ * public Boolean mobile_login(email, pass) {
+ *      Boolean result = false;
+ *
+ *      // Insert code that checks the database of the user with the same email and pass.
+ *
+ *      return result;
+ * }
+ *
+*/

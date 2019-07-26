@@ -5,6 +5,13 @@ import android.os.AsyncTask;
 
 public class WSSetAttendance extends AsyncTask<String, Void, Boolean> {
 
+    private String URL = "INSERT URL";
+    private String NAMESPACE = "INSERT NAMESPACE";
+
+    private String SA_METHODNAME = "INSERT METHODNAME";
+    private String SA_SOAPACTION = NAMESPACE + SA_METHODNAME;
+    // di ako sure anong parameter/s yung pinapass sa RFID
+
     private Context context;
 
     protected Boolean tapResult;

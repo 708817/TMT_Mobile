@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private WSTestWebService wsTestWebService;
+    private WSTestDatabase wsTestDatabase;
     private TextView tvLoading, tvLoadingStatus;
     private AlertDialog.Builder builder;
     private Boolean testOutput;
@@ -80,18 +82,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Boolean testWebService() {
+        Boolean result;
+        wsTestWebService = new WSTestWebService(MainActivity.this);
+
         tvLoadingStatus.setText("Connecting to Web Server");
 
-        /*  Insert Web Service method "testWebService()"    */
+        wsTestWebService.execute();
 
-        return null;
+        result = wsTestWebService.wsTestResult;
+
+        return result;
     }
 
     private Boolean testDatabase() {
+        Boolean result;
+        wsTestDatabase = new WSTestDatabase(MainActivity.this);
+
         tvLoadingStatus.setText("Connecting to Database");
 
-        /*  Insert Web Service method "testDatabase()"  */
+        wsTestDatabase.execute();
 
-        return null;
+        result = wsTestDatabase.wsTestResult;
+
+        return result;
     }
 }

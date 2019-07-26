@@ -1,3 +1,4 @@
+// NOTE: See bottom comment to see ideal Web Service method parameters
 package com.example.tmt_mobile;
 
 import android.content.Context;
@@ -70,3 +71,18 @@ public class WSRetrieveInfo extends AsyncTask<String, Void, String> {
         return retrieveResult;
     }
 }
+
+/*
+ * NOTE: Hold Middle-Click (Mouse3) to highlight the code without including the asterisks
+ *
+ * public String mobile_info(email) {
+ *      String result = "";
+ *
+ *      // yung format ng nirereturn na result parang ganito sana:
+ *      //
+ *      // result = "CS129,CS184-1P,CS153L";
+ *
+ *      return result;
+ * }
+ *
+ */

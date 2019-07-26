@@ -1,3 +1,4 @@
+// NOTE: See bottom comment to see ideal Web Service method parameters
 package com.example.tmt_mobile;
 
 import android.content.Context;
@@ -21,8 +22,8 @@ public class WSRetrieveSection extends AsyncTask<String, Void, String> {
 
     private String RS_METHODNAME = "INSERT METHODNAME";
     private String RS_SOAPACTION = NAMESPACE + RS_METHODNAME;
-    private String RS_PARAM_1 = "course";
-    private String RS_PARAM_2 = "email";
+    private String RS_PARAM_1 = "email";
+    private String RS_PARAM_2 = "course";
 
     private Context context;
     protected String sectionResult;
@@ -77,3 +78,18 @@ public class WSRetrieveSection extends AsyncTask<String, Void, String> {
         return sectionResult;
     }
 }
+
+/*
+ * NOTE: Hold Middle-Click (Mouse3) to highlight the code without including the asterisks
+ *
+ * public String mobile_section(email, course) {
+ *      String result = "";
+ *
+ *      // yung format ng nirereturn na result parang ganito sana:
+ *      //
+ *      // result = "AC1,AC2,BM6";
+ *
+ *      return result;
+ * }
+ *
+ */

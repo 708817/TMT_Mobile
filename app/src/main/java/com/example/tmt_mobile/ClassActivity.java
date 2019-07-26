@@ -66,7 +66,7 @@ public class ClassActivity extends AppCompatActivity {
         bStartAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*intent = new Intent(ClassActivity.this, AttendanceMode.class);
+                /*intent = new Intent(ClassActivity.this, AttendanceActivity.class);
                 bundle = new Bundle();
 
                 bundle.putString("email", email);
