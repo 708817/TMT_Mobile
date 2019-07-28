@@ -17,6 +17,8 @@ import java.io.IOException;
 
 public class WSLogin extends AsyncTask<String, Void, Boolean> {
 
+    public AsyncResponse delegate = null;
+
     private String URL = "INSERT URL";
     private String NAMESPACE = "INSERT NAMESPACE";
 
@@ -25,12 +27,9 @@ public class WSLogin extends AsyncTask<String, Void, Boolean> {
     private String L_PARAM_1 = "email";
     private String L_PARAM_2 = "pass";
 
-    private Context mContext;
-
     protected Boolean loginResult;
 
-    public WSLogin(Context context) {
-        this.mContext = context;
+    public WSLogin() {
         this.loginResult = false;
     }
 
@@ -79,6 +78,11 @@ public class WSLogin extends AsyncTask<String, Void, Boolean> {
         }
 
         return loginResult;
+    }
+
+    @Override
+    protected void onPostExecute(Boolean loginResult) {
+        delegate.processFinish(loginResult);
     }
 
 }

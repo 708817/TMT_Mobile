@@ -17,6 +17,8 @@ import java.io.IOException;
 
 public class WSRetrieveInfo extends AsyncTask<String, Void, String> {
 
+    public AsyncResponse delegate = null;
+
     private String URL = "INSERT URL";
     private String NAMESPACE = "INSERT NAMESPACE";
 
@@ -26,10 +28,7 @@ public class WSRetrieveInfo extends AsyncTask<String, Void, String> {
 
     protected String retrieveResult;
 
-    Context mContext;
-
-    public WSRetrieveInfo(Context context) {
-        this.mContext = context;
+    public WSRetrieveInfo() {
         this.retrieveResult = "";
     }
 
@@ -69,6 +68,11 @@ public class WSRetrieveInfo extends AsyncTask<String, Void, String> {
         }
 
         return retrieveResult;
+    }
+
+    @Override
+    protected void onPostExecute(String retrieveResult) {
+        delegate.processFinish(retrieveResult);
     }
 }
 

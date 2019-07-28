@@ -14,14 +14,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AsyncResponse {
 
-    private WSTestWebService wsTestWebService;
-    private WSTestDatabase wsTestDatabase;
+    private WSTestServices wsTestServices;
     private TextView tvLoading, tvLoadingStatus;
     private AlertDialog.Builder builder;
     private Boolean testOutput;
-    private int trial1, trial2;
+    private int trial;
     private Intent intent;
 
     @Override
@@ -39,71 +38,43 @@ public class MainActivity extends AppCompatActivity {
         tvLoadingStatus.setText("Setting up connection");
         builder = new AlertDialog.Builder(MainActivity.this, R.style.CustomAlertDialog);
         testOutput = false;
-        trial1 = 0;
-        trial2 = 0;
+        trial = 0;
         // Initial Values Declaration END
 
         init();
     }
 
     private void init() {
-        do {
-            trial1++;
-            testOutput = testWebService();
-            if (trial1 >= 10) {
-                builder.setTitle("Error Occured (1)");
-                builder.setMessage("Connection failed after (" + trial1 + ") retries.");
+        testServices();
+    }
+
+    private void testServices() {
+        wsTestServices = new WSTestServices();
+        wsTestServices.delegate = this;
+
+        tvLoadingStatus.setText("Connecting to Online Services");
+
+        wsTestServices.execute();
+    }
+
+    @Override
+    public void processFinish(Object output) {
+        Boolean result;
+        result = (Boolean) output;
+        if (!result) {
+            if (trial >= 10) {
+                builder.setTitle("Error Occured");
+                builder.setMessage("Connection failed after (" + trial + ") retries.");
                 builder.setCancelable(true);
                 builder.show();
-                break;
+                tvLoadingStatus.setText("Connection Failed");
+                return;
             }
-        } while (testOutput == false);
-
-        if (testOutput) {
-            testOutput = false;
-            do {
-                trial2++;
-                testOutput = testDatabase();
-                if (trial2 >= 10) {
-                    builder.setTitle("Error Occured (2)");
-                    builder.setMessage("Connection failed after (" + trial1 + ") retries.");
-                    builder.setCancelable(true);
-                    builder.show();
-                    break;
-                }
-            } while (testOutput == false);
-        }
-
-        if (testOutput) {
+            testServices();
+        } else {
             // Insert Animation
             intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }
-    }
-
-    private Boolean testWebService() {
-        Boolean result;
-        wsTestWebService = new WSTestWebService(MainActivity.this);
-
-        tvLoadingStatus.setText("Connecting to Web Server");
-
-        wsTestWebService.execute();
-
-        result = wsTestWebService.wsTestResult;
-
-        return result;
-    }
-
-    private Boolean testDatabase() {
-        Boolean result;
-        wsTestDatabase = new WSTestDatabase(MainActivity.this);
-
-        tvLoadingStatus.setText("Connecting to Database");
-
-        wsTestDatabase.execute();
-
-        result = wsTestDatabase.wsTestResult;
-
-        return result;
     }
 }

@@ -5,6 +5,14 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 - [Checklist](https://github.com/708817/TMT_Mobile#checklist)
 - [Versioning](https://github.com/708817/TMT_Mobile#versioning)
 ## Changelogs
+###### v0.5
+- Added AsyncResponse.java
+- Removed WSTestWebServices.java
+- Renamed WSTestDatabase.java to WSTestServices.java
+- Modified WSTestServices to co-function with AsyncResponse (lines 19, and 63-66)
+- Modified MainActivity (47-77), LoginActivity (41-78), MDActivity (45-82), and SectionsActivity (47-87) to co-function with AsyncResponse
+- Modified WSLogin (20, 83-86), WSRetrieveInfo (20, 73-76), and WSRetrieveSection (20, 81-84) to co-function with AsyncResponse
+- Bug-Fixed #1: Retrieving WS variable from a WS class only returns unchanged value. This is due to AsyncTask being slow af for changing the variable before being retrieved.
 ###### v0.4
 - Added WSTestDatabase.java and WSTestWebService.java
 - Renamed AttendanceMode.java to AttendanceActivity.java

@@ -16,7 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements AsyncResponse{
 
     private WSLogin wsLogin;
     private EditText etEmail, etPassword;
@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button bLogin;
     private Intent intent;
     private Bundle bundle;
+    private Boolean result;
     private AlertDialog.Builder builder;
 
     @Override
@@ -37,6 +38,9 @@ public class LoginActivity extends AppCompatActivity {
         bLogin = (Button) findViewById(R.id.bLogin);
         // XML UI Assignment END
 
+        wsLogin = new WSLogin();
+        wsLogin.delegate = this;
+
         init();
 
     }
@@ -48,26 +52,30 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 email = etEmail.getText().toString();
                 pass = etPassword.getText().toString();
-                wsLogin = new WSLogin(LoginActivity.this);
                 wsLogin.execute(email, pass);
-
-                if (!wsLogin.loginResult) {
-                    builder = new AlertDialog.Builder(LoginActivity.this, R.style.CustomAlertDialog);
-                    builder.setMessage("Log-in Failed. Please try again.");
-                    builder.setCancelable(true);
-                    builder.show();
-                } else {
-                    intent = new Intent(LoginActivity.this, MDActivity.class);
-                    bundle = new Bundle();
-
-                    bundle.putString("email", email);
-                    intent.putExtras(bundle);
-
-                    startActivity(intent);
-                }
-
             }
         });
 
+    }
+
+
+    @Override
+    public void processFinish(Object output) {
+        result = (Boolean) output;
+
+        if (!result) {
+            builder = new AlertDialog.Builder(LoginActivity.this, R.style.CustomAlertDialog);
+            builder.setMessage("Log-in Failed. Please try again.");
+            builder.setCancelable(true);
+            builder.show();
+        } else {
+            intent = new Intent(LoginActivity.this, MDActivity.class);
+            bundle = new Bundle();
+
+            bundle.putString("email", email);
+            intent.putExtras(bundle);
+
+            startActivity(intent);
+        }
     }
 }

@@ -15,7 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class SectionsActivity extends AppCompatActivity {
+public class SectionsActivity extends AppCompatActivity implements AsyncResponse {
 
     private WSRetrieveSection wsRetrieveSection;
     private ListView lvSections;
@@ -44,15 +44,23 @@ public class SectionsActivity extends AppCompatActivity {
 
         section = "";
 
+        wsRetrieveSection = new WSRetrieveSection();
+        wsRetrieveSection.delegate = this;
+
         init();
 
     }
 
     private void init() {
 
-        wsRetrieveSection = new WSRetrieveSection(SectionsActivity.this);
         wsRetrieveSection.execute(email, course);
-        sSections = wsRetrieveSection.sectionResult;
+
+    }
+
+    @Override
+    public void processFinish(Object output) {
+
+        sSections = (String) output;
 
         if (sSections.isEmpty()) {
 
@@ -80,6 +88,5 @@ public class SectionsActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
 }

@@ -15,7 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class MDActivity extends AppCompatActivity {
+public class MDActivity extends AppCompatActivity implements AsyncResponse {
 
     private WSRetrieveInfo wsRetrieveInfo;
     private Intent oldIntent, intent;
@@ -26,7 +26,6 @@ public class MDActivity extends AppCompatActivity {
     private String course;
     private String sCourses;
     private String[] saCourses;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,23 +42,30 @@ public class MDActivity extends AppCompatActivity {
         email = oldBundle.getString("email");
         // GetExtras END
 
+        wsRetrieveInfo = new WSRetrieveInfo();
+        wsRetrieveInfo.delegate = this;
+
         init();
 
     }
 
     private void init() {
 
-        wsRetrieveInfo = new WSRetrieveInfo(MDActivity.this);
         wsRetrieveInfo.execute(email);
-        sCourses = wsRetrieveInfo.retrieveResult;
+
+    }
+
+    @Override
+    public void processFinish(Object output) {
+        sCourses = (String) output;
 
         if (sCourses.isEmpty()) {
 
         } else {
             saCourses = sCourses.split(",");
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,
-                saCourses);
+                    android.R.layout.simple_list_item_1,
+                    saCourses);
             lvCourses.setAdapter(adapter);
             lvCourses.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -78,6 +84,5 @@ public class MDActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
 }

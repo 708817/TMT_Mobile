@@ -17,6 +17,8 @@ import java.io.IOException;
 
 public class WSRetrieveSection extends AsyncTask<String, Void, String> {
 
+    public AsyncResponse delegate = null;
+
     private String URL = "INSERT URL";
     private String NAMESPACE = "INSERT NAMESPACE";
 
@@ -25,11 +27,9 @@ public class WSRetrieveSection extends AsyncTask<String, Void, String> {
     private String RS_PARAM_1 = "email";
     private String RS_PARAM_2 = "course";
 
-    private Context context;
     protected String sectionResult;
 
-    public WSRetrieveSection (Context context) {
-        this.context = context;
+    public WSRetrieveSection() {
         sectionResult = "";
     }
 
@@ -76,6 +76,11 @@ public class WSRetrieveSection extends AsyncTask<String, Void, String> {
         }
 
         return sectionResult;
+    }
+
+    @Override
+    protected void onPostExecute(String sectionResult) {
+        delegate.processFinish(sectionResult);
     }
 }
 

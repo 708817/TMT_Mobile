@@ -14,25 +14,25 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 
-public class WSTestDatabase extends AsyncTask<String, Void, Boolean> {
+public class WSTestServices extends AsyncTask<String, Void, Boolean> {
+
+    public AsyncResponse delegate = null;
 
     private String URL = "INSERT URL";
     private String NAMESPACE = "INSERT NAMESPACE";
 
-    private String TDB_METHODNAME = "INSERT METHODNAME";
-    private String TDB_SOAPACTION = NAMESPACE + TDB_METHODNAME;
+    private String TS_METHODNAME = "INSERT METHODNAME";
+    private String TS_SOAPACTION = NAMESPACE + TS_METHODNAME;
 
-    private Context mContext;
     protected Boolean wsTestResult;
 
-    public WSTestDatabase (Context context) {
-        this.mContext = context;
-        wsTestResult = false;
+    public WSTestServices() {
+        this.wsTestResult = false;
     }
 
     @Override
     protected Boolean doInBackground(String... param) {
-        SoapObject soapObject = new SoapObject(NAMESPACE, TDB_METHODNAME);
+        SoapObject soapObject = new SoapObject(NAMESPACE, TS_METHODNAME);
 
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.setOutputSoapObject(soapObject);
@@ -40,7 +40,7 @@ public class WSTestDatabase extends AsyncTask<String, Void, Boolean> {
         HttpTransportSE httpTransportSE = new HttpTransportSE(URL);
 
         try {
-            httpTransportSE.call(TDB_SOAPACTION, envelope);
+            httpTransportSE.call(TS_SOAPACTION, envelope);
             SoapPrimitive soapPrimitive = (SoapPrimitive) envelope.getResponse();
             wsTestResult = Boolean.valueOf(soapPrimitive.toString());
         } catch (SoapFault sf) {
@@ -59,12 +59,17 @@ public class WSTestDatabase extends AsyncTask<String, Void, Boolean> {
 
         return wsTestResult;
     }
+
+    @Override
+    protected void onPostExecute(Boolean wsTestResult) {
+        delegate.processFinish(wsTestResult);
+    }
 }
 
 /*
  * NOTE: Hold Middle-Click (Mouse3) to highlight the code without including the asterisks
  *
- * public Boolean mobile_database() {
+ * public Boolean mobile_services() {
  *      String result = false;
  *
  *      // Insert code connecting to database. Exception error should either set the
