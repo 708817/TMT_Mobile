@@ -5,6 +5,8 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 - [Checklist](https://github.com/708817/TMT_Mobile#checklist)
 - [Versioning](https://github.com/708817/TMT_Mobile#versioning)
 ## Changelogs
+###### v0.5a
+- Added comment to AsyncResponse.java
 ###### v0.5
 - Added AsyncResponse.java
 - Removed WSTestWebServices.java
