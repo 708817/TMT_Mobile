@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements AsyncResponse {
 
+    // TEST
+
     private WSTestServices wsTestServices;
     private TextView tvLoading, tvLoadingStatus;
     private AlertDialog.Builder builder;
