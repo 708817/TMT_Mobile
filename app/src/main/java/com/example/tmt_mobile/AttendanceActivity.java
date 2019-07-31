@@ -91,8 +91,6 @@ public class AttendanceActivity extends AppCompatActivity implements AsyncRespon
     }
 
     private void init() {
-
-        // Insert NFC Code Here
         ivStudent.setVisibility(View.INVISIBLE);
     }
 

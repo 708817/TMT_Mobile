@@ -6,20 +6,24 @@ DESCRIPTION OF ClassActivity.java
 */
 package com.example.tmt_mobile;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ClassActivity extends AppCompatActivity {
 
-    private TextView tvSection;
-    private Button bClassRecord, bStartAttendance, bBack;
+    private ImageView ivLogoff;
+    private TextView tvClass;
+    private Button bClassRecord, bStartAttendance;
 
-    private Intent oldIntent, intent;
+    private Intent oldIntent, intent, intentOut;
     private Bundle oldBundle, bundle;
 
     private String email, course, section;
@@ -30,10 +34,10 @@ public class ClassActivity extends AppCompatActivity {
         setContentView(R.layout.activity_class);
 
         // XML UI Assignment START
-        tvSection = (TextView) findViewById(R.id.tvSection);
+        ivLogoff = (ImageView) findViewById(R.id.ivLogoff);
+        tvClass = (TextView) findViewById(R.id.tvClass);
         bClassRecord = (Button) findViewById(R.id.bClassRecord);
         bStartAttendance = (Button) findViewById(R.id.bStartAttendance);
-        bBack = (Button) findViewById(R.id.bBack);
         // XML UI Assignment END
 
         // GetExtras START
@@ -44,15 +48,35 @@ public class ClassActivity extends AppCompatActivity {
         section = oldBundle.getString("section");
         // GetExtras END
 
+        // Assigning and Declaring Variables START
+        tvClass.setText(course + "/" + section);
+        bClassRecord.setText("Class Record");
+        bStartAttendance.setText("Attendance Mode");
+        // Assigning and Declaring Variables END
+
         init();
     }
 
     private void init() {
 
-        tvSection.setText(course + "/" + section);
-        bClassRecord.setText("Class Record");
-        bStartAttendance.setText("Attendance Mode");
-        bBack.setText("Back");
+        ivLogoff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ClassActivity.this, R.style.CustomAlertDialog);
+                builder.setTitle("Logging Off");
+                builder.setMessage("Are you sure?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        intentOut = new Intent(ClassActivity.this, LoginActivity.class);
+                        intentOut.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intentOut);
+                    }
+                });
+                builder.setNegativeButton("No", null);
+                builder.show();
+            }
+        });
 
         bClassRecord.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,13 +105,6 @@ public class ClassActivity extends AppCompatActivity {
                 intent.putExtras(bundle);
 
                 startActivity(intent);
-            }
-        });
-
-        bBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
             }
         });
 

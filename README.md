@@ -5,6 +5,12 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 - [Checklist](https://github.com/708817/TMT_Mobile#checklist)
 - [Versioning](https://github.com/708817/TMT_Mobile#versioning)
 ## Changelogs
+###### v0.6a
+- Removed "Back" Button in ClassActivity.java
+- Added Logoff feature in ClassActivity.java (lines 62-78)
+- Updated ClassActivity UI (activity_class.xml)
+- Updated WSSetAttendance.java for web service implementation (lines 36-55)
+- Added internet permissions in AndroidManifest.xml (line 5)
 ###### v0.6
 - Added Google Guava Library
 - Added kSoap2 Library
