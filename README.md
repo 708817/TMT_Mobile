@@ -5,12 +5,17 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 - [Checklist](https://github.com/708817/TMT_Mobile#checklist)
 - [Versioning](https://github.com/708817/TMT_Mobile#versioning)
 ## Changelogs
-###### vNEW
+###### v0.51
 - Renamed MDActivity.java to CoursesActivity.java
 - Renamed activity_md.xml to activity_courses.xml
 - Updated comments in AttendanceActivity, LoginActivity, CoursesActivity, and SectionsActivity
+- Modified Attendance Activity to co-function with AsyncResponse (lines 22, and 72-89)
 - Added "Remember Me" feature in LoginActivity.java (lines 60-70 and 100-108)
+- Added Logoff feature in CoursesActivity.java (71-88) and SectionsActivity.java (69-86)
 - Updated LoginActivity UI (activity_login.xml)
+- Updated CoursesActivity UI (activity_courses.xml)
+- Updated SectionsActivity UI (activity_sections.xml)
+- Updated AttendanceActivity UI (activity_attendance.xml)
 ###### v0.5a
 - Added comment to AsyncResponse.java
 ###### v0.5
