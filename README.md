@@ -5,6 +5,16 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 - [Checklist](https://github.com/708817/TMT_Mobile#checklist)
 - [Versioning](https://github.com/708817/TMT_Mobile#versioning)
 ## Changelogs
+###### v0.6
+- Added Google Guava Library
+- Added kSoap2 Library
+- Added NFC Methods in AttendanceActivity.java (70-76), (81-92), (117-186)
+- Added NFC Class (NdefMessageParser.java)
+- Added NFC Class (ParsedNdefRecord.java)
+- Added NFC Class (SmartPoster.java)
+- Added NFC Class (TextRecord.java)
+- Added NFC Class (UriRecord.java)
+- Added <uses-permission> and <uses-feature> for NFC (AndroidManifest.xml)
 ###### v0.51
 - Renamed MDActivity.java to CoursesActivity.java
 - Renamed activity_md.xml to activity_courses.xml
