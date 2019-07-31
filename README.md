@@ -48,11 +48,11 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 - [ ] MainActivity UI
 - [ ] MainActivity Functionality
 - [x] LoginActivity UI
-- [ ] LoginActivity Functionality
+- [x] LoginActivity Functionality
 - [ ] CoursesActivity UI
-- [ ] CoursesActivity Functionality
+- [x] CoursesActivity Functionality
 - [ ] SectionsActivity UI
-- [ ] SectionsActivity Functionality
+- [x] SectionsActivity Functionality
 - [ ] ClassActivity UI
 - [ ] ClassActivity Functionality
 ## Versioning
