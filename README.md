@@ -5,6 +5,12 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 - [Checklist](https://github.com/708817/TMT_Mobile#checklist)
 - [Versioning](https://github.com/708817/TMT_Mobile#versioning)
 ## Changelogs
+###### vNEW
+- Renamed MDActivity.java to CoursesActivity.java
+- Renamed activity_md.xml to activity_courses.xml
+- Updated comments in AttendanceActivity, LoginActivity, CoursesActivity, and SectionsActivity
+- Added "Remember Me" feature in LoginActivity.java (lines 60-70 and 100-108)
+- Updated LoginActivity UI (activity_login.xml)
 ###### v0.5a
 - Added comment to AsyncResponse.java
 ###### v0.5
@@ -36,14 +42,14 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 ## Checklist
 - [ ] MainActivity UI
 - [ ] MainActivity Functionality
-- [ ] LoginActivity UI
+- [x] LoginActivity UI
 - [ ] LoginActivity Functionality
-- [ ] MDActivity UI
-- [ ] MDActivity Functionality
+- [ ] CoursesActivity UI
+- [ ] CoursesActivity Functionality
 - [ ] SectionsActivity UI
 - [ ] SectionsActivity Functionality
-- [ ] ClassRecordActivity UI
-- [ ] ClassRecordActivity Functionality
+- [ ] ClassActivity UI
+- [ ] ClassActivity Functionality
 ## Versioning
 Guide when committing the repository:
 1. Added and Changed codes/variables inside an existing method, (v0.1 -> v0.1a -> v0.1b ...)

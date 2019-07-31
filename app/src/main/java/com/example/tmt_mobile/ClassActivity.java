@@ -1,3 +1,9 @@
+/*
+DESCRIPTION OF ClassActivity.java
+        Most likely di na magaganap yung class mismo ng prof. May option siyang magpatap ng ID
+        yung mga estudyante. Di ko pa alam kung lalagyan pa ba natin ung nireretrieve yung class
+        record.
+*/
 package com.example.tmt_mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -66,7 +72,7 @@ public class ClassActivity extends AppCompatActivity {
         bStartAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*intent = new Intent(ClassActivity.this, AttendanceActivity.class);
+                intent = new Intent(ClassActivity.this, AttendanceActivity.class);
                 bundle = new Bundle();
 
                 bundle.putString("email", email);
@@ -74,7 +80,7 @@ public class ClassActivity extends AppCompatActivity {
                 bundle.putString("section", section);
                 intent.putExtras(bundle);
 
-                startActivity(intent);*/
+                startActivity(intent);
             }
         });
 

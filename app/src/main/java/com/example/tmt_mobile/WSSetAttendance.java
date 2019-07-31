@@ -3,7 +3,9 @@ package com.example.tmt_mobile;
 import android.content.Context;
 import android.os.AsyncTask;
 
-public class WSSetAttendance extends AsyncTask<String, Void, Boolean> {
+public class WSSetAttendance extends AsyncTask<String, Void, String> {
+
+    public AsyncResponse delegate = null;
 
     private String URL = "INSERT URL";
     private String NAMESPACE = "INSERT NAMESPACE";
@@ -12,20 +14,22 @@ public class WSSetAttendance extends AsyncTask<String, Void, Boolean> {
     private String SA_SOAPACTION = NAMESPACE + SA_METHODNAME;
     // di ako sure anong parameter/s yung pinapass sa RFID
 
-    private Context context;
+    protected String tapResult;
 
-    protected Boolean tapResult;
-
-    public WSSetAttendance(Context context) {
-        this.context = context;
-        this.tapResult = false;
+    public WSSetAttendance() {
+        this.tapResult = "";
     }
 
     @Override
-    protected Boolean doInBackground(String... param) {
+    protected String doInBackground(String... param) {
 
         // Insert Attendance Web Service here
 
         return tapResult;
+    }
+
+    @Override
+    protected void onPostExecute(String tapResult) {
+        delegate.processFinish(tapResult);
     }
 }

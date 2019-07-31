@@ -4,41 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".LoginActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--insert background picture here-->
+        <ImageView
+            android:layout_width="1140dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@mipmap/loginbg" />
+
+        <!--insert logo picture here-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center">
+            android:paddingHorizontal="30dp">
 
-            <!--insert logo picture here-->
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/tmtlogo" />
 
             <EditText
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="E-mail"/>
+                android:backgroundTint="@color/colorWhite"
+                android:hint="etEmail"
+                android:inputType="textEmailAddress"
+                android:shadowColor="@android:color/black"
+                android:shadowDx="2.5"
+                android:shadowDy="2.5"
+                android:shadowRadius="6.0"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                android:textSize="22dp" />
 
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"/>
+                android:backgroundTint="@color/colorWhite"
+                android:hint="etPassword"
+                android:inputType="textPassword"
+                android:shadowColor="@android:color/black"
+                android:shadowDx="2.5"
+                android:shadowDy="2.5"
+                android:shadowRadius="6.0"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhite"
+                android:textSize="22dp" />
+
+            <CheckBox
+                android:id="@+id/cbRemember"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:buttonTint="@color/colorWhite"
+                android:shadowColor="@android:color/black"
+                android:shadowDx="2.5"
+                android:shadowDy="2.5"
+                android:shadowRadius="6.0"
+                android:text="cbRemember"
+                android:textColor="@color/colorWhite"
+                android:textSize="17dp" />
 
             <Button
                 android:id="@+id/bLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="bLogin"/>
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/colorLightGreen"
+                android:text="bLogin"
+                android:textColor="@color/colorWhite"
+                android:textSize="17dp" />
 
         </LinearLayout>
 
