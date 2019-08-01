@@ -14,19 +14,32 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ClassActivity extends AppCompatActivity {
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+public class ClassActivity extends AppCompatActivity implements AsyncResponse {
+
+    private WSRetrieveClassRecord wsRetrieveClassRecord;
 
     private ImageView ivLogoff;
     private TextView tvClass;
-    private Button bClassRecord, bStartAttendance;
+    private ImageButton ibClassRecord, ibStartAttendance;
 
     private Intent oldIntent, intent, intentOut;
     private Bundle oldBundle, bundle;
 
-    private String email, course, section;
+    DateFormat dateFormat;
+    private String email, course, section, date, result;
+    private String[] rows, columns;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +49,8 @@ public class ClassActivity extends AppCompatActivity {
         // XML UI Assignment START
         ivLogoff = (ImageView) findViewById(R.id.ivLogoff);
         tvClass = (TextView) findViewById(R.id.tvClass);
-        bClassRecord = (Button) findViewById(R.id.bClassRecord);
-        bStartAttendance = (Button) findViewById(R.id.bStartAttendance);
+        ibClassRecord = (ImageButton) findViewById(R.id.ibClassRecord);
+        ibStartAttendance = (ImageButton) findViewById(R.id.ibStartAttendance);
         // XML UI Assignment END
 
         // GetExtras START
@@ -49,10 +62,12 @@ public class ClassActivity extends AppCompatActivity {
         // GetExtras END
 
         // Assigning and Declaring Variables START
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         tvClass.setText(course + "/" + section);
-        bClassRecord.setText("Class Record");
-        bStartAttendance.setText("Attendance Mode");
         // Assigning and Declaring Variables END
+
+        wsRetrieveClassRecord = new WSRetrieveClassRecord();
+        wsRetrieveClassRecord.delegate = this;
 
         init();
     }
@@ -78,22 +93,14 @@ public class ClassActivity extends AppCompatActivity {
             }
         });
 
-        bClassRecord.setOnClickListener(new View.OnClickListener() {
+        ibClassRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*intent = new Intent(ClassActivity.this, ClassRecord.class);
-                bundle = new Bundle();
-
-                bundle.putString("email", email);
-                bundle.putString("course", course);
-                bundle.putString("section", section);
-                intent.putExtras(bundle);
-
-                startActivity(intent);*/
+                wsRetrieveClassRecord.execute(course, section);
             }
         });
 
-        bStartAttendance.setOnClickListener(new View.OnClickListener() {
+        ibStartAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 intent = new Intent(ClassActivity.this, AttendanceActivity.class);
@@ -107,6 +114,62 @@ public class ClassActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+    }
+
+    private void createNewCSV(File file) {
+        try {
+            file.createNewFile();
+
+            FileWriter fwNew = new FileWriter(file, true);
+            BufferedWriter bwNew = new BufferedWriter(fwNew);
+
+            bwNew.write("NAME, PRESENT/ABSENT");
+            bwNew.flush();
+            fwNew.flush();
+            bwNew.close();
+            fwNew.close();
+
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void processFinish(Object output) {
+        result = (String) output;
+
+
+        date = (String) dateFormat.format(Calendar.getInstance().getTime());
+
+        File filepath = new File("/data/data/com.example.tmt_mobile/databases/");
+        if (!filepath.exists()) {
+            filepath.mkdirs();
+        }
+
+        File file = new File(filepath, course + "-" + section + " " + date);
+        if (file.exists()) {
+            file.delete();
+            createNewCSV(file);
+        } else {
+            createNewCSV(file);
+        }
+
+        rows = result.split(";");
+
+        try {
+            FileWriter fw = new FileWriter(file, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            for (String column : rows) {
+                bw.newLine();
+                bw.write(column);
+            }
+
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
 
     }
 }

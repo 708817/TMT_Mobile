@@ -98,7 +98,6 @@ public class AttendanceActivity extends AppCompatActivity implements AsyncRespon
     public void processFinish(Object output) {
         result = (String) output;
         if (result.isEmpty()) {
-            // Dito sana iseset yung image ng student
             ivStudent.setVisibility(View.INVISIBLE);
             builder = new AlertDialog.Builder(AttendanceActivity.this, R.style.CustomAlertDialog);
             builder.setTitle("Error Occurred");
@@ -106,6 +105,7 @@ public class AttendanceActivity extends AppCompatActivity implements AsyncRespon
             builder.setCancelable(true);
             builder.show();
         } else {
+            // Dito sana iseset yung image ng student
             ivStudent.setVisibility(View.VISIBLE);
             toast = Toast.makeText(getApplicationContext(), "Attendance Successful", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
@@ -179,7 +179,7 @@ public class AttendanceActivity extends AppCompatActivity implements AsyncRespon
             builder.append(str).append("\n");
         }
 
-        wsSetAttendance.execute(builder.toString());
+        wsSetAttendance.execute(builder.toString(), course, section);
         //text.setText(builder.toString());
     }
 }

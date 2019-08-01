@@ -5,6 +5,13 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 - [Checklist](https://github.com/708817/TMT_Mobile#checklist)
 - [Versioning](https://github.com/708817/TMT_Mobile#versioning)
 ## Changelogs
+###### v0.61
+- Added WSRetrieveClassRecord.java
+- Updated WSSetAttendance.java with new parameters (lines 42-61)
+- Added "Get Class Record" in ClassActivity.java
+- Updated ClassActivity UI (activity_class.xml)
+- Updated CoursesActivity UI (activity_class.xml)
+- Updated SectionsActivity UI (activity_class.xml)
 ###### v0.6a
 - Removed "Back" Button in ClassActivity.java
 - Added Logoff feature in ClassActivity.java (lines 62-78)
@@ -65,9 +72,9 @@ A Mobile Application for Attendance recording using Web Server, Database, and NF
 - [ ] MainActivity Functionality
 - [x] LoginActivity UI
 - [x] LoginActivity Functionality
-- [ ] CoursesActivity UI
+- [x] CoursesActivity UI
 - [x] CoursesActivity Functionality
-- [ ] SectionsActivity UI
+- [x] SectionsActivity UI
 - [x] SectionsActivity Functionality
 - [ ] ClassActivity UI
 - [ ] ClassActivity Functionality
