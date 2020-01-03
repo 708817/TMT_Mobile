@@ -18,14 +18,12 @@ public class WSSetAttendance extends AsyncTask<String, Void, String> {
 
     public AsyncResponse delegate = null;
 
-    private String URL = "INSERT URL";
-    private String NAMESPACE = "INSERT NAMESPACE";
+    private String URL = "http://192.168.43.161:8080/STT_Java4_Projects/ws?WSDL";
+    private String NAMESPACE = "http://stt/";
 
-    private String SA_METHODNAME = "INSERT METHODNAME";
+    private String SA_METHODNAME = "getDetails";
     private String SA_SOAPACTION = NAMESPACE + SA_METHODNAME;
-    private String SA_PARAM_1 = "hexid";
-    private String SA_PARAM_2 = "course";
-    private String SA_PARAM_3 = "section";
+    private String SA_PARAM_1 = "hexno";
     // di ako sure anong parameter/s yung pinapass sa RFID
 
     protected String tapResult;
@@ -39,26 +37,12 @@ public class WSSetAttendance extends AsyncTask<String, Void, String> {
 
         SoapObject soapObject = new SoapObject(NAMESPACE, SA_METHODNAME);
 
-        PropertyInfo propertyInfo_1 = new PropertyInfo();
-        propertyInfo_1.setName(SA_PARAM_1);
-        propertyInfo_1.setValue(param[0]);
-        propertyInfo_1.setType(String.class);
+        PropertyInfo propertyInfo1 = new PropertyInfo();
+        propertyInfo1.setName(SA_PARAM_1);
+        propertyInfo1.setValue(param[0]);
+        propertyInfo1.setType(String.class);
 
-        soapObject.addProperty(propertyInfo_1);
-
-        PropertyInfo propertyInfo_2 = new PropertyInfo();
-        propertyInfo_2.setName(SA_PARAM_2);
-        propertyInfo_2.setValue(param[1]);
-        propertyInfo_2.setType(String.class);
-
-        soapObject.addProperty(propertyInfo_2);
-
-        PropertyInfo propertyInfo_3 = new PropertyInfo();
-        propertyInfo_3.setName(SA_PARAM_3);
-        propertyInfo_3.setValue(param[2]);
-        propertyInfo_3.setType(String.class);
-
-        soapObject.addProperty(propertyInfo_3);
+        soapObject.addProperty(propertyInfo1);
 
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.setOutputSoapObject(soapObject);

@@ -19,12 +19,12 @@ public class WSRetrieveInfo extends AsyncTask<String, Void, String> {
 
     public AsyncResponse delegate = null;
 
-    private String URL = "INSERT URL";
-    private String NAMESPACE = "INSERT NAMESPACE";
+    private String URL = "http://192.168.43.161:8080/STT_Java4_Projects/ws?WSDL";
+    private String NAMESPACE = "http://stt/";
 
-    private String RI_METHODNAME = "INSERT METHODNAME";
+    private String RI_METHODNAME = "mobile_retrieveinfo";
     private String RI_SOAPACTION = NAMESPACE + RI_METHODNAME;
-    private String RI_PARAM = "email";
+    private String RI_PARAM = "empno";
 
     protected String retrieveResult;
 

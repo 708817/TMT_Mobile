@@ -31,7 +31,7 @@ public class SectionsActivity extends AppCompatActivity implements AsyncResponse
     private ImageView ivLogoff;
     private ListView lvSections;
 
-    private String sSections, email, course, section;
+    private String sSections, empno, course, section;
     private String[] saSections;
 
     @Override
@@ -48,13 +48,13 @@ public class SectionsActivity extends AppCompatActivity implements AsyncResponse
         // GetExtras START
         oldIntent = getIntent();
         oldBundle = oldIntent.getExtras();
-        email = oldBundle.getString("email");
+        empno = oldBundle.getString("empno");
         course = oldBundle.getString("course");
         // GetExtras END
 
         // Assigning and Declaring Variables START
         section = "";
-        tvSections.setText(course + "Sections");
+        tvSections.setText(course + " Sections");
         // Assigning and Declaring Variables END
 
         wsRetrieveSection = new WSRetrieveSection();
@@ -85,7 +85,7 @@ public class SectionsActivity extends AppCompatActivity implements AsyncResponse
             }
         });
 
-        wsRetrieveSection.execute(email, course);
+        wsRetrieveSection.execute(empno, course);
 
     }
 
@@ -111,7 +111,7 @@ public class SectionsActivity extends AppCompatActivity implements AsyncResponse
                     intent = new Intent(SectionsActivity.this, ClassActivity.class);
                     bundle = new Bundle();
 
-                    bundle.putString("email", email);
+                    bundle.putString("empno", empno);
                     bundle.putString("course", course);
                     bundle.putString("section", section);
                     intent.putExtras(bundle);

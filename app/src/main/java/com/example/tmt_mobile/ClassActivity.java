@@ -12,11 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -96,7 +99,7 @@ public class ClassActivity extends AppCompatActivity implements AsyncResponse {
         ibClassRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                wsRetrieveClassRecord.execute(course, section);
+                wsRetrieveClassRecord.execute();
             }
         });
 
@@ -124,7 +127,7 @@ public class ClassActivity extends AppCompatActivity implements AsyncResponse {
             FileWriter fwNew = new FileWriter(file, true);
             BufferedWriter bwNew = new BufferedWriter(fwNew);
 
-            bwNew.write("NAME, PRESENT/ABSENT");
+            bwNew.write("CLASS NUMBER, DATE, STATUS, STUDENT NUMBER");
             bwNew.flush();
             fwNew.flush();
             bwNew.close();
@@ -140,15 +143,14 @@ public class ClassActivity extends AppCompatActivity implements AsyncResponse {
     public void processFinish(Object output) {
         result = (String) output;
 
-
         date = (String) dateFormat.format(Calendar.getInstance().getTime());
 
-        File filepath = new File("/data/data/com.example.tmt_mobile/databases/");
+        File filepath = new File(Environment.getExternalStorageDirectory().toString() + "/TMT_Mobile");
         if (!filepath.exists()) {
             filepath.mkdirs();
         }
 
-        File file = new File(filepath, course + "-" + section + " " + date);
+        File file = new File(filepath, course + "-" + section + " " + date + ".csv");
         if (file.exists()) {
             file.delete();
             createNewCSV(file);
@@ -163,13 +165,24 @@ public class ClassActivity extends AppCompatActivity implements AsyncResponse {
             BufferedWriter bw = new BufferedWriter(fw);
 
             for (String column : rows) {
+                System.out.println(column);
                 bw.newLine();
                 bw.write(column);
             }
 
+
+            bw.flush();
+            fw.flush();
+            bw.close();
+            fw.close();
+
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+
+        Toast toast = Toast.makeText(getApplicationContext(), "Class List Recorded Successfully", Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.show();
 
     }
 }

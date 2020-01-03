@@ -17,34 +17,22 @@ public class WSRetrieveClassRecord extends AsyncTask<String, Void, String> {
 
     public AsyncResponse delegate = null;
 
-    private String URL = "INSERT URL";
-    private String NAMESPACE = "INSERT NAMESPACE";
+    private String URL = "http://192.168.43.161:8080/STT_Java4_Projects/ws?WSDL";
+    private String NAMESPACE = "http://stt/";
 
-    private String RCR_METHODNAME = "INSERT METHODNAME";
+    private String RCR_METHODNAME = "viewAttendance";
     private String RCR_SOAPACTION = NAMESPACE + RCR_METHODNAME;
-    private String RCR_PARAM_1 = "course";
-    private String RCR_PARAM_2 = "section";
 
     private String classResult;
+
+    public WSRetrieveClassRecord() {
+        this.classResult = "";
+    }
 
     @Override
     protected String doInBackground(String... param) {
 
         SoapObject soapObject = new SoapObject(NAMESPACE, RCR_METHODNAME);
-
-        PropertyInfo propertyInfo_1 = new PropertyInfo();
-        propertyInfo_1.setName(RCR_PARAM_1);
-        propertyInfo_1.setValue(param[0]);
-        propertyInfo_1.setType(String.class);
-
-        soapObject.addProperty(propertyInfo_1);
-
-        PropertyInfo propertyInfo_2 = new PropertyInfo();
-        propertyInfo_2.setName(RCR_PARAM_2);
-        propertyInfo_2.setValue(param[1]);
-        propertyInfo_2.setType(String.class);
-
-        soapObject.addProperty(propertyInfo_2);
 
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.setOutputSoapObject(soapObject);

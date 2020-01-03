@@ -33,7 +33,7 @@ public class AttendanceActivity extends AppCompatActivity implements AsyncRespon
     private Bundle oldBundle;
 
     private ImageView ivStudent;
-    private TextView tvStatement_1;
+    private TextView tvStatement_1, tvStatement_2, tvStatement_3;
     private Toast toast;
     private AlertDialog.Builder builder;
 
@@ -50,6 +50,8 @@ public class AttendanceActivity extends AppCompatActivity implements AsyncRespon
         // XML UI Assignment START
         ivStudent = (ImageView) findViewById(R.id.ivStudent);
         tvStatement_1 = (TextView) findViewById(R.id.tvStatement_1);
+        tvStatement_2 = (TextView) findViewById(R.id.tvStatement_2);
+        tvStatement_3 = (TextView) findViewById(R.id.tvStatement_3);
         // XML UI Assignment END
 
         // GetExtras START
@@ -64,8 +66,6 @@ public class AttendanceActivity extends AppCompatActivity implements AsyncRespon
         tvStatement_1.setText("Tap the student ID at the back of the phone to start scanning");
         // Assigning and Declaring Variables END
 
-        wsSetAttendance = new WSSetAttendance();
-        wsSetAttendance.delegate = this;
 
         // NFC Assignments
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
@@ -88,10 +88,13 @@ public class AttendanceActivity extends AppCompatActivity implements AsyncRespon
     protected void onNewIntent(Intent intent) {
         setIntent(intent);
         resolveIntent(intent);
+
     }
 
     private void init() {
         ivStudent.setVisibility(View.INVISIBLE);
+        tvStatement_2.setVisibility(View.INVISIBLE);
+        tvStatement_3.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -105,8 +108,15 @@ public class AttendanceActivity extends AppCompatActivity implements AsyncRespon
             builder.setCancelable(true);
             builder.show();
         } else {
-            // Dito sana iseset yung image ng student
+            String[] studentInfo = result.split(";");
+            tvStatement_1.setText(studentInfo[0]);
+            tvStatement_2.setText(studentInfo[1] + " " + studentInfo[2]);
+            tvStatement_3.setText(studentInfo[3] + "/" + studentInfo[4]);
+
             ivStudent.setVisibility(View.VISIBLE);
+            tvStatement_2.setVisibility(View.VISIBLE);
+            tvStatement_3.setVisibility(View.VISIBLE);
+
             toast = Toast.makeText(getApplicationContext(), "Attendance Successful", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
             toast.show();
@@ -147,7 +157,7 @@ public class AttendanceActivity extends AppCompatActivity implements AsyncRespon
     private String dumpTagData(Tag tag) {
         StringBuilder sb = new StringBuilder();
         byte[] id = tag.getId();
-        sb.append(toHex(id)).append('\n');
+        sb.append(toHex(id));
         return sb.toString();
     }
 
@@ -176,10 +186,12 @@ public class AttendanceActivity extends AppCompatActivity implements AsyncRespon
         for (int i = 0; i < size; i++) {
             ParsedNdefRecord record = records.get(i);
             String str = record.str();
-            builder.append(str).append("\n");
+            builder.append(str).append("");
         }
 
-        wsSetAttendance.execute(builder.toString(), course, section);
+        wsSetAttendance = new WSSetAttendance();
+        wsSetAttendance.delegate = this;
+        wsSetAttendance.execute(builder.toString());
         //text.setText(builder.toString());
     }
 }

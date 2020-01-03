@@ -32,7 +32,7 @@ public class CoursesActivity extends AppCompatActivity implements AsyncResponse 
     private ListView lvCourses;
     private ImageView ivLogoff;
 
-    private String email;
+    private String empno;
     private String course;
     private String sCourses;
     private String[] saCourses;
@@ -51,7 +51,7 @@ public class CoursesActivity extends AppCompatActivity implements AsyncResponse 
         // GetExtras START
         oldIntent = getIntent();
         oldBundle = oldIntent.getExtras();
-        email = oldBundle.getString("email");
+        empno = oldBundle.getString("empno");
         // GetExtras END
 
         // Assigning and Declaring Variables START
@@ -87,7 +87,7 @@ public class CoursesActivity extends AppCompatActivity implements AsyncResponse 
             }
         });
 
-        wsRetrieveInfo.execute(email);
+        wsRetrieveInfo.execute(empno);
 
     }
 
@@ -111,8 +111,8 @@ public class CoursesActivity extends AppCompatActivity implements AsyncResponse 
                     intent = new Intent(CoursesActivity.this, SectionsActivity.class);
                     bundle = new Bundle();
 
+                    bundle.putString("empno", empno);
                     bundle.putString("course", course);
-                    bundle.putString("email", email);
                     intent.putExtras(bundle);
 
                     startActivity(intent);

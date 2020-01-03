@@ -15,28 +15,26 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 
-public class WSLogin extends AsyncTask<String, Void, Boolean> {
+public class WSLogin extends AsyncTask<String, Void, String> {
 
     public AsyncResponse delegate = null;
 
-    private String URL = "INSERT URL";
-    private String NAMESPACE = "INSERT NAMESPACE";
+    private String URL = "http://192.168.43.161:8080/STT_Java4_Projects/ws?WSDL";
+    private String NAMESPACE = "http://stt/";
 
-    private String L_METHODNAME = "INSERT METHODNAME";
+    private String L_METHODNAME = "professorLogin";
     private String L_SOAPACTION = NAMESPACE + L_METHODNAME;
     private String L_PARAM_1 = "email";
-    private String L_PARAM_2 = "pass";
+    private String L_PARAM_2 = "password";
 
-    protected Boolean loginResult;
+    protected String loginResult;
 
     public WSLogin() {
-        this.loginResult = false;
+        this.loginResult = "";
     }
 
     @Override
-    protected Boolean doInBackground(String... param) {
-
-        System.out.println(param.length + " PARAAAAAAAAAAAAAAAAAAAAAAAM LENGTH");
+    protected String doInBackground(String... param) {
 
         SoapObject soapObject = new SoapObject(NAMESPACE, L_METHODNAME);
 
@@ -62,26 +60,26 @@ public class WSLogin extends AsyncTask<String, Void, Boolean> {
         try {
             httpTransportSE.call(L_SOAPACTION, envelope);
             SoapPrimitive soapPrimitive = (SoapPrimitive) envelope.getResponse();
-            loginResult = Boolean.valueOf(soapPrimitive.toString());
+            loginResult = soapPrimitive.toString();
         } catch (SoapFault sf) {
             sf.printStackTrace();
-            loginResult = false;
+            loginResult = "";
         } catch (XmlPullParserException xppe) {
             xppe.printStackTrace();
-            loginResult = false;
+            loginResult = "";
         } catch (IOException ioe) {
             ioe.printStackTrace();
-            loginResult = false;
+            loginResult = "";
         } catch (Exception e) {
             e.printStackTrace();
-            loginResult = false;
+            loginResult = "";
         }
 
         return loginResult;
     }
 
     @Override
-    protected void onPostExecute(Boolean loginResult) {
+    protected void onPostExecute(String loginResult) {
         delegate.processFinish(loginResult);
     }
 

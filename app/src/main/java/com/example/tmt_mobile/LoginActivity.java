@@ -29,8 +29,8 @@ public class LoginActivity extends AppCompatActivity implements AsyncResponse {
     private Intent intent;
     private Bundle bundle;
 
-    private String email, pass;
-    private Boolean result, saveLogin;
+    private String email, pass, result;
+    private Boolean saveLogin;
 
     private AlertDialog.Builder builder;
 
@@ -81,7 +81,16 @@ public class LoginActivity extends AppCompatActivity implements AsyncResponse {
             public void onClick(View view) {
                 email = etEmail.getText().toString();
                 pass = etPassword.getText().toString();
-                wsLogin.execute(email, pass);
+
+                if (email.isEmpty() || pass.isEmpty()) {
+                    builder = new AlertDialog.Builder(LoginActivity.this, R.style.CustomAlertDialog);
+                    builder.setMessage("Log-in Failed. Please Fill-out the proper credentials");
+                    builder.setCancelable(true);
+                    builder.show();
+                } else {
+                    wsLogin.execute(email, pass);
+                }
+
             }
         });
 
@@ -89,15 +98,14 @@ public class LoginActivity extends AppCompatActivity implements AsyncResponse {
 
     @Override
     public void processFinish(Object output) {
-        result = (Boolean) output;
+        result = (String) output;
 
-        if (!result) {
+        if (result.isEmpty()) {
             builder = new AlertDialog.Builder(LoginActivity.this, R.style.CustomAlertDialog);
             builder.setMessage("Log-in Failed. Please try again.");
             builder.setCancelable(true);
             builder.show();
         } else {
-
             if (cbRemember.isChecked()) {
                 sharedPreferencesEditor.putBoolean("saveLogin", true);
                 sharedPreferencesEditor.putString("email", email);
@@ -111,7 +119,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncResponse {
             intent = new Intent(LoginActivity.this, CoursesActivity.class);
             bundle = new Bundle();
 
-            bundle.putString("email", email);
+            bundle.putString("empno", result);
             intent.putExtras(bundle);
 
             startActivity(intent);
